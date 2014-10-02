@@ -1,0 +1,543 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Scrambled Bits</title>
+  <meta name="author" content="Emilio Castro">
+
+  
+  <meta name="description" content="So, you&rsquo;ve setup a new and fresh Wordpress blog (wait, you haven&rsquo;t? Download it at the Wordpress website) and you&rsquo;re ready to start &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://johnqunknown.github.io/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Scrambled Bits" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Scrambled Bits</a></h1>
+  
+    <h2>Tech tips, rants and more&#8230;</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:johnqunknown.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/01/fixing-wordpress-permissions/">Fixing Wordpress Permissions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-01T21:40:41-07:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/10/01/fixing-wordpress-permissions/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So, you&rsquo;ve setup a new and fresh Wordpress blog (wait, you haven&rsquo;t? Download it at <a href="http://wordpress.org">the Wordpress website</a>) and you&rsquo;re ready to start blogging! But before that comes customization, you know you have some plugins you&rsquo;ve read about, maybe a theme or two you want to try, and some other settings you want to tweak, so you go on ahead and click the appropriate option in the dashboard (Themes or Plugins), click on &ldquo;Add New&rdquo;, make a choice and click &ldquo;Install&rdquo;, but what&rsquo;s that? Why is it asking you for an FTP server, username and password?</p>
+
+<p><a href="http://imgur.com/rvs63U7"><img src="http://i.imgur.com/rvs63U7l.png" alt="FTP Options when installing something new" /></a></p>
+
+<p>In order for this to work, you should be running a FTP server on your server, this would work if you&rsquo;re hosted on a shared server or have a team behind you taking care of these issues, but what happens if you are hosting your blog on <a href="https://koding.com/R/johnqunknown">Koding</a> or a fresh <a href="https://www.digitalocean.com/?refcode=76213b9f5cdf">VPS</a>? (refferal link BTW ;D)
+What happens if you&rsquo;re testing this in your local computer and have no means or want to setup a FTP server just because if this? Well you could install a <a href="http://wordpress.org/plugins/ssh-sftp-updater-support/">plugin</a> to use your SSH credentials and make it work with SFTP (as it is shown in the picture) or you could change the permissions on your wordpress directory and forget about usernames and passwords forever!</p>
+
+<p>If you&rsquo;re like me, you want to make this as easy as possible, because you&rsquo;re lazy (like me). Keep in mind that to follow these instructions you must have the following:</p>
+
+<ul>
+<li>SSH access to your server.</li>
+<li>Necessary permissions to change the owner and group permissions of your wordpress installation directory.</li>
+<li>Confidence in your understanding of these instructions (I&rsquo;ll make it as easy as possible).</li>
+<li>Comfort in using the Linux/Unix terminal.</li>
+<li>A wordpress installation (obviously).</li>
+</ul>
+
+
+<p><strong>Step 1: Login</strong><br />
+The first step could be obvious to most of you, but I&rsquo;ll include it just in case. You need to access your server via SSH (Putty on Windows or SSH in OSX/Linux).</p>
+
+<p><strong>Step 2: Access installation directory</strong><br />
+After you&rsquo;ve logged in to your server, you need to change the directory to the wordpress installation.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@server ~: cd /path/to/wordpress/installation
+</span><span class='line'>
+</span><span class='line'>e.g.
+</span><span class='line'>
+</span><span class='line'>root@server ~: cd /var/www/wordpress</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Step 3: Change permissions</strong>
+This is the last step, we will change the permissions of the whole wordpress installation directory and make the default <code>www-data</code> user to have ownership of the files since this is the user under which your webserver (apache, nginx) typically runs on.</p>
+
+<p><code>root@server /var/www/wordpress: chown -Rv www-data:www-data *</code></p>
+
+<p>This will require root access (or at least the permission to change owner), maybe you&rsquo;ll need to append <code>sudo</code> before this last command.</p>
+
+<p>After this, Wordpress won&rsquo;t ask for any username or password when installing a new theme or plugin.</p>
+
+<p><a href="http://imgur.com/U8yiwH5"><img src="http://i.imgur.com/U8yiwH5l.png" alt="No more passwords!" /></a></p>
+
+<p>Hope this helps you in any way, if you have any questions leave a comment below ;D
+Want to know who I am? Visit my <a href="http://johnqunknown.github.io/about/">&ldquo;About&rdquo;</a> page.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/10/01/git-a-practical-guide-part-1/">Git: A Practical Guide (Part 1)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-01T21:40:07-07:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/10/01/git-a-practical-guide-part-1/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/09/fixing-wordpress-permissions/">Fixing Wordpress Permissions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-09T14:40:41-07:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/03/09/fixing-wordpress-permissions/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So, you&rsquo;ve setup a new and fresh Wordpress blog (wait, you haven&rsquo;t? Download it at <a href="http://wordpress.org">the Wordpress website</a>) and you&rsquo;re ready to start blogging! But before that comes customization, you know you have some plugins you&rsquo;ve read about, maybe a theme or two you want to try, and some other settings you want to tweak, so you go on ahead and click the appropriate option in the dashboard (Themes or Plugins), click on &ldquo;Add New&rdquo;, make a choice and click &ldquo;Install&rdquo;, but what&rsquo;s that? Why is it asking you for an FTP server, username and password?</p>
+
+<p><a href="http://imgur.com/rvs63U7"><img src="http://i.imgur.com/rvs63U7l.png" alt="FTP Options when installing something new" /></a></p>
+
+<p>In order for this to work, you should be running a FTP server on your server, this would work if you&rsquo;re hosted on a shared server or have a team behind you taking care of these issues, but what happens if you are hosting your blog on <a href="https://koding.com/R/johnqunknown">Koding</a> or a fresh <a href="https://www.digitalocean.com/?refcode=76213b9f5cdf">VPS</a>? (refferal link BTW ;D)
+What happens if you&rsquo;re testing this in your local computer and have no means or want to setup a FTP server just because if this? Well you could install a <a href="http://wordpress.org/plugins/ssh-sftp-updater-support/">plugin</a> to use your SSH credentials and make it work with SFTP (as it is shown in the picture) or you could change the permissions on your wordpress directory and forget about usernames and passwords forever!</p>
+
+<p>If you&rsquo;re like me, you want to make this as easy as possible, because you&rsquo;re lazy (like me). Keep in mind that to follow these instructions you must have the following:</p>
+
+<ul>
+<li>SSH access to your server.</li>
+<li>Necessary permissions to change the owner and group permissions of your wordpress installation directory.</li>
+<li>Confidence in your understanding of these instructions (I&rsquo;ll make it as easy as possible).</li>
+<li>Comfort in using the Linux/Unix terminal.</li>
+<li>A wordpress installation (obviously).</li>
+</ul>
+
+
+<p><strong>Step 1: Login</strong><br />
+The first step could be obvious to most of you, but I&rsquo;ll include it just in case. You need to access your server via SSH (Putty on Windows or SSH in OSX/Linux).</p>
+
+<p><strong>Step 2: Access installation directory</strong><br />
+After you&rsquo;ve logged in to your server, you need to change the directory to the wordpress installation.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@server ~: cd /path/to/wordpress/installation
+</span><span class='line'>
+</span><span class='line'>e.g.
+</span><span class='line'>
+</span><span class='line'>root@server ~: cd /var/www/wordpress</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Step 3: Change permissions</strong>
+This is the last step, we will change the permissions of the whole wordpress installation directory and make the default <code>www-data</code> user to have ownership of the files since this is the user under which your webserver (apache, nginx) typically runs on.</p>
+
+<p><code>root@server /var/www/wordpress: chown -Rv www-data:www-data *</code></p>
+
+<p>This will require root access (or at least the permission to change owner), maybe you&rsquo;ll need to append <code>sudo</code> before this last command.</p>
+
+<p>After this, Wordpress won&rsquo;t ask for any username or password when installing a new theme or plugin.</p>
+
+<p><a href="http://imgur.com/U8yiwH5"><img src="http://i.imgur.com/U8yiwH5l.png" alt="No more passwords!" /></a></p>
+
+<p>Hope this helps you in any way, if you have any questions leave a comment below ;D
+Want to know who I am? Visit my <a href="http://johnqunknown.github.io/about/">&ldquo;About&rdquo;</a> page.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/13/git-a-practical-guide-part-1/">Git: A Practical Guide (Part 1)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-13T20:40:07-08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/11/13/git-a-practical-guide-part-1/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Maybe you have heard of <a href="http://git-scm.com/">Git</a>, or maybe <a href="http://subversion.tigris.org/">SVN</a>, <a href="http://mercurial.selenic.com/">Mercurial</a> or any other code versioning systems, but what exactly is code versioning?</p>
+
+<blockquote><p>Revision control, also known as version control and source control , is the management of changes to documents, computer programs, large web sites, and other collections of information. Changes are usually identified by a number or letter code, termed the &ldquo;revision number&rdquo;, &ldquo;revision level&rdquo;, or simply &ldquo;revision&rdquo;. For example, an initial set of files is &ldquo;revision 1&rdquo;. When the first change is made, the resulting set is &ldquo;revision 2&rdquo;, and so on. Each revision is associated with a timestamp and the person making the change. Revisions can be compared, restored, and with some types of files, merged.</p></blockquote>
+
+<p>Now that we have a better idea on what Code Versioning or Revision Control is, let&rsquo;s hop up and see what all this is about.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/13/git-a-practical-guide-part-1/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/">Installing Ghost Blog in a Development Environment</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-10T02:21:23-08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In this tutorial you&rsquo;ll step by step how to install <a href="http://ghost.org" title="Ghost Blogging platform">Ghost</a> in your development server, you just need to <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">install</a> <a href="http://nodejs.org" title="Node.js Framework">node.js</a> beforehand to be able to follow this guide.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/">Installing Ghost Blog in a Development Environment</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-10T02:21:23-08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In this tutorial you&rsquo;ll step by step how to install <a href="http://ghost.org" title="Ghost Blogging platform">Ghost</a> in your development server, you just need to <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">install</a> <a href="http://nodejs.org" title="Node.js Framework">node.js</a> beforehand to be able to follow this guide.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/01/fixing-wordpress-permissions/">Fixing Wordpress permissions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/01/git-a-practical-guide-part-1/">Git: A practical guide (Part 1)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/09/fixing-wordpress-permissions/">Fixing Wordpress permissions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/13/git-a-practical-guide-part-1/">Git: A practical guide (Part 1)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/">Installing Ghost Blog in a Development environment</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/JohnQUnknown">@JohnQUnknown</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'JohnQUnknown',
+            count: 3,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Emilio Castro -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>. Background image by <a href="http://www.flickr.com/photos/89433098@N04/">Florian Kraft Fotografie</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'scrambledbits';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

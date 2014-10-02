@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: guide, | Scrambled Bits]]></title>
+  <link href="http://johnqunknown.github.io/blog/categories/guide/atom.xml" rel="self"/>
+  <link href="http://johnqunknown.github.io/"/>
+  <updated>2014-10-01T22:09:54-07:00</updated>
+  <id>http://johnqunknown.github.io/</id>
+  <author>
+    <name><![CDATA[Emilio Castro]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Git: A practical guide (Part 1)]]></title>
+    <link href="http://johnqunknown.github.io/blog/2013/11/13/git-a-practical-guide-part-1/"/>
+    <updated>2013-11-13T20:40:07-08:00</updated>
+    <id>http://johnqunknown.github.io/blog/2013/11/13/git-a-practical-guide-part-1</id>
+    <content type="html"><![CDATA[<p>Maybe you have heard of <a href="http://git-scm.com/">Git</a>, or maybe <a href="http://subversion.tigris.org/">SVN</a>, <a href="http://mercurial.selenic.com/">Mercurial</a> or any other code versioning systems, but what exactly is code versioning?</p>
+
+<blockquote><p>Revision control, also known as version control and source control , is the management of changes to documents, computer programs, large web sites, and other collections of information. Changes are usually identified by a number or letter code, termed the &ldquo;revision number&rdquo;, &ldquo;revision level&rdquo;, or simply &ldquo;revision&rdquo;. For example, an initial set of files is &ldquo;revision 1&rdquo;. When the first change is made, the resulting set is &ldquo;revision 2&rdquo;, and so on. Each revision is associated with a timestamp and the person making the change. Revisions can be compared, restored, and with some types of files, merged.</p></blockquote>
+
+<p>Now that we have a better idea on what Code Versioning or Revision Control is, let&rsquo;s hop up and see what all this is about.</p>
+
+<!--more-->
+
+
+<p>Git is one of those <strong>Revision Control</strong> systems,</p>
+
+<p>This guide asumes that you are using a Debian-based Linux distribution and that you are somewhat comfortable with the terminal. In this first instance of the series, we will cover the installation of Git in a VPS, but this could be used to install Git in any Debian-based system or any other Unix-like system with a few minor changes.</p>
+
+<script type="text/javascript" src="http://asciinema.org/a/5809.js" id="asciicast-5809" async></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Ghost Blog in a Development environment]]></title>
+    <link href="http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/"/>
+    <updated>2013-11-10T02:21:23-08:00</updated>
+    <id>http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment</id>
+    <content type="html"><![CDATA[<p>In this tutorial you&rsquo;ll step by step how to install <a href="http://ghost.org" title="Ghost Blogging platform">Ghost</a> in your development server, you just need to <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">install</a> <a href="http://nodejs.org" title="Node.js Framework">node.js</a> beforehand to be able to follow this guide.</p>
+
+<!-- more -->
+
+
+
+
+<script type="text/javascript" src="http://asciinema.org/a/5918.js" id="asciicast-5918" async></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Ghost Blog in a Development environment]]></title>
+    <link href="http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/"/>
+    <updated>2013-11-10T02:21:23-08:00</updated>
+    <id>http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment</id>
+    <content type="html"><![CDATA[<p>In this tutorial you&rsquo;ll step by step how to install <a href="http://ghost.org" title="Ghost Blogging platform">Ghost</a> in your development server, you just need to <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">install</a> <a href="http://nodejs.org" title="Node.js Framework">node.js</a> beforehand to be able to follow this guide.</p>
+
+<!-- more -->
+
+
+
+
+<script type="text/javascript" src="http://asciinema.org/a/5918.js" id="asciicast-5918" async></script>
+
+]]></content>
+  </entry>
+  
+</feed>

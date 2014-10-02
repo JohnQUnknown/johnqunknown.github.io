@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ghost, | Scrambled Bits]]></title>
+  <link href="http://johnqunknown.github.io/blog/categories/ghost/atom.xml" rel="self"/>
+  <link href="http://johnqunknown.github.io/"/>
+  <updated>2014-10-01T22:09:54-07:00</updated>
+  <id>http://johnqunknown.github.io/</id>
+  <author>
+    <name><![CDATA[Emilio Castro]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Ghost Blog in a Development environment]]></title>
+    <link href="http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/"/>
+    <updated>2013-11-10T02:21:23-08:00</updated>
+    <id>http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment</id>
+    <content type="html"><![CDATA[<p>In this tutorial you&rsquo;ll step by step how to install <a href="http://ghost.org" title="Ghost Blogging platform">Ghost</a> in your development server, you just need to <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">install</a> <a href="http://nodejs.org" title="Node.js Framework">node.js</a> beforehand to be able to follow this guide.</p>
+
+<!-- more -->
+
+
+
+
+<script type="text/javascript" src="http://asciinema.org/a/5918.js" id="asciicast-5918" async></script>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Ghost Blog in a Development environment]]></title>
+    <link href="http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/"/>
+    <updated>2013-11-10T02:21:23-08:00</updated>
+    <id>http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment</id>
+    <content type="html"><![CDATA[<p>In this tutorial you&rsquo;ll step by step how to install <a href="http://ghost.org" title="Ghost Blogging platform">Ghost</a> in your development server, you just need to <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">install</a> <a href="http://nodejs.org" title="Node.js Framework">node.js</a> beforehand to be able to follow this guide.</p>
+
+<!-- more -->
+
+
+
+
+<script type="text/javascript" src="http://asciinema.org/a/5918.js" id="asciicast-5918" async></script>
+
+]]></content>
+  </entry>
+  
+</feed>
