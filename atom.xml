@@ -4,7 +4,7 @@
   <title><![CDATA[Scrambled Bits]]></title>
   <link href="http://johnqunknown.github.io/atom.xml" rel="self"/>
   <link href="http://johnqunknown.github.io/"/>
-  <updated>2014-10-01T22:09:54-07:00</updated>
+  <updated>2014-10-01T22:21:45-07:00</updated>
   <id>http://johnqunknown.github.io/</id>
   <author>
     <name><![CDATA[Emilio Castro]]></name>
@@ -15,78 +15,15 @@
   
   <entry>
     <title type="html"><![CDATA[Fixing Wordpress permissions]]></title>
-    <link href="http://johnqunknown.github.io/blog/2014/10/01/fixing-wordpress-permissions/"/>
-    <updated>2014-10-01T21:40:41-07:00</updated>
-    <id>http://johnqunknown.github.io/blog/2014/10/01/fixing-wordpress-permissions</id>
-    <content type="html"><![CDATA[<p>So, you&rsquo;ve setup a new and fresh Wordpress blog (wait, you haven&rsquo;t? Download it at <a href="http://wordpress.org">the Wordpress website</a>) and you&rsquo;re ready to start blogging! But before that comes customization, you know you have some plugins you&rsquo;ve read about, maybe a theme or two you want to try, and some other settings you want to tweak, so you go on ahead and click the appropriate option in the dashboard (Themes or Plugins), click on &ldquo;Add New&rdquo;, make a choice and click &ldquo;Install&rdquo;, but what&rsquo;s that? Why is it asking you for an FTP server, username and password?</p>
-
-<p><a href="http://imgur.com/rvs63U7"><img src="http://i.imgur.com/rvs63U7l.png" alt="FTP Options when installing something new" /></a></p>
-
-<p>In order for this to work, you should be running a FTP server on your server, this would work if you&rsquo;re hosted on a shared server or have a team behind you taking care of these issues, but what happens if you are hosting your blog on <a href="https://koding.com/R/johnqunknown">Koding</a> or a fresh <a href="https://www.digitalocean.com/?refcode=76213b9f5cdf">VPS</a>? (refferal link BTW ;D)
-What happens if you&rsquo;re testing this in your local computer and have no means or want to setup a FTP server just because if this? Well you could install a <a href="http://wordpress.org/plugins/ssh-sftp-updater-support/">plugin</a> to use your SSH credentials and make it work with SFTP (as it is shown in the picture) or you could change the permissions on your wordpress directory and forget about usernames and passwords forever!</p>
-
-<p>If you&rsquo;re like me, you want to make this as easy as possible, because you&rsquo;re lazy (like me). Keep in mind that to follow these instructions you must have the following:</p>
-
-<ul>
-<li>SSH access to your server.</li>
-<li>Necessary permissions to change the owner and group permissions of your wordpress installation directory.</li>
-<li>Confidence in your understanding of these instructions (I&rsquo;ll make it as easy as possible).</li>
-<li>Comfort in using the Linux/Unix terminal.</li>
-<li>A wordpress installation (obviously).</li>
-</ul>
-
-
-<p><strong>Step 1: Login</strong><br />
-The first step could be obvious to most of you, but I&rsquo;ll include it just in case. You need to access your server via SSH (Putty on Windows or SSH in OSX/Linux).</p>
-
-<p><strong>Step 2: Access installation directory</strong><br />
-After you&rsquo;ve logged in to your server, you need to change the directory to the wordpress installation.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>root@server ~: cd /path/to/wordpress/installation
-</span><span class='line'>
-</span><span class='line'>e.g.
-</span><span class='line'>
-</span><span class='line'>root@server ~: cd /var/www/wordpress</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>Step 3: Change permissions</strong>
-This is the last step, we will change the permissions of the whole wordpress installation directory and make the default <code>www-data</code> user to have ownership of the files since this is the user under which your webserver (apache, nginx) typically runs on.</p>
-
-<p><code>root@server /var/www/wordpress: chown -Rv www-data:www-data *</code></p>
-
-<p>This will require root access (or at least the permission to change owner), maybe you&rsquo;ll need to append <code>sudo</code> before this last command.</p>
-
-<p>After this, Wordpress won&rsquo;t ask for any username or password when installing a new theme or plugin.</p>
-
-<p><a href="http://imgur.com/U8yiwH5"><img src="http://i.imgur.com/U8yiwH5l.png" alt="No more passwords!" /></a></p>
-
-<p>Hope this helps you in any way, if you have any questions leave a comment below ;D
-Want to know who I am? Visit my <a href="http://johnqunknown.github.io/about/">&ldquo;About&rdquo;</a> page.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Git: A practical guide (Part 1)]]></title>
-    <link href="http://johnqunknown.github.io/blog/2014/10/01/git-a-practical-guide-part-1/"/>
-    <updated>2014-10-01T21:40:07-07:00</updated>
-    <id>http://johnqunknown.github.io/blog/2014/10/01/git-a-practical-guide-part-1</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Fixing Wordpress permissions]]></title>
     <link href="http://johnqunknown.github.io/blog/2014/03/09/fixing-wordpress-permissions/"/>
     <updated>2014-03-09T14:40:41-07:00</updated>
     <id>http://johnqunknown.github.io/blog/2014/03/09/fixing-wordpress-permissions</id>
     <content type="html"><![CDATA[<p>So, you&rsquo;ve setup a new and fresh Wordpress blog (wait, you haven&rsquo;t? Download it at <a href="http://wordpress.org">the Wordpress website</a>) and you&rsquo;re ready to start blogging! But before that comes customization, you know you have some plugins you&rsquo;ve read about, maybe a theme or two you want to try, and some other settings you want to tweak, so you go on ahead and click the appropriate option in the dashboard (Themes or Plugins), click on &ldquo;Add New&rdquo;, make a choice and click &ldquo;Install&rdquo;, but what&rsquo;s that? Why is it asking you for an FTP server, username and password?</p>
 
 <p><a href="http://imgur.com/rvs63U7"><img src="http://i.imgur.com/rvs63U7l.png" alt="FTP Options when installing something new" /></a></p>
+
+<!--more-->
+
 
 <p>In order for this to work, you should be running a FTP server on your server, this would work if you&rsquo;re hosted on a shared server or have a team behind you taking care of these issues, but what happens if you are hosting your blog on <a href="https://koding.com/R/johnqunknown">Koding</a> or a fresh <a href="https://www.digitalocean.com/?refcode=76213b9f5cdf">VPS</a>? (refferal link BTW ;D)
 What happens if you&rsquo;re testing this in your local computer and have no means or want to setup a FTP server just because if this? Well you could install a <a href="http://wordpress.org/plugins/ssh-sftp-updater-support/">plugin</a> to use your SSH credentials and make it work with SFTP (as it is shown in the picture) or you could change the permissions on your wordpress directory and forget about usernames and passwords forever!</p>
@@ -155,23 +92,6 @@ Want to know who I am? Visit my <a href="http://johnqunknown.github.io/about/">&
 <p>This guide asumes that you are using a Debian-based Linux distribution and that you are somewhat comfortable with the terminal. In this first instance of the series, we will cover the installation of Git in a VPS, but this could be used to install Git in any Debian-based system or any other Unix-like system with a few minor changes.</p>
 
 <script type="text/javascript" src="http://asciinema.org/a/5809.js" id="asciicast-5809" async></script>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Installing Ghost Blog in a Development environment]]></title>
-    <link href="http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment/"/>
-    <updated>2013-11-10T02:21:23-08:00</updated>
-    <id>http://johnqunknown.github.io/blog/2013/11/10/installing-ghost-blog-in-a-development-environment</id>
-    <content type="html"><![CDATA[<p>In this tutorial you&rsquo;ll step by step how to install <a href="http://ghost.org" title="Ghost Blogging platform">Ghost</a> in your development server, you just need to <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">install</a> <a href="http://nodejs.org" title="Node.js Framework">node.js</a> beforehand to be able to follow this guide.</p>
-
-<!-- more -->
-
-
-
-
-<script type="text/javascript" src="http://asciinema.org/a/5918.js" id="asciicast-5918" async></script>
 
 ]]></content>
   </entry>
